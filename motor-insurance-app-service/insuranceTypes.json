@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Motor Insurance",
+    "type": "MOTOR_INSURANCE"
+  },
+  {
+    "name": "Life Insurance",
+    "type": "LIFE_INSURANCE"
+  }
+]

@@ -1,0 +1,268 @@
+[
+    {
+        "name":"Own Goods",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Pick-Ups",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Trucks and Truck Trailers",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Water Tanker",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Fuel tanker and trailers",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Tipper",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            }
+        ] 
+    },
+    {
+        "name":"General Cartage",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Pick-Ups",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Trucks and Truck Trailers",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Water Tanker",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Fuel tanker and trailers",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Tipper",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            }
+        ] 
+    },   
+    {
+        "name":"Public Service(Fare Paying)",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Up-to-16 seats",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Between 17-30 seats",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Above 30 seats",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            }
+        ] 
+    },
+    {
+        "name":"Passenger Carrying",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Own Service",
+                "nextQuestion":null,
+                "parentQuestion":null
+            },
+            {
+                "name":"Public Service",
+                "nextQuestion":"Public Service(Fare Paying)",
+                "parentQuestion":null
+            },
+            {
+                "name":"Taxi and Learner",
+                "nextQuestion":null,
+                "parentQuestion":null
+            },
+            {
+                "name":"Car Hire",
+                "nextQuestion":null,
+                "parentQuestion":null
+            },
+            {
+                "name":"Motorcycles including three wheelers",
+                "nextQuestion":null,
+                "parentQuestion":null
+            }
+        ] 
+    },
+    {
+        "name":"Good Carrying",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Own Goods",
+                "nextQuestion":"Own Goods",
+                "parentQuestion":null
+
+            },
+            {
+                "name":"General Cartage",
+                "nextQuestion":"General Cartage",
+                "parentQuestion":null
+
+            }
+        ] 
+    },
+    {
+        "name":"Motor Commercial",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Goods Carrying",
+                "nextQuestion":"Good Carrying",
+                "parentQuestion":null
+            },
+            {
+                "name":"Passenger Carrying",
+                "nextQuestion":"Passenger Carrying",
+                "parentQuestion":null
+            },
+            {
+                "name":"Agricultural vehicle",
+                "nextQuestion":null,
+                "parentQuestion":null
+            },
+            {
+                "name":"Ambulance",
+                "nextQuestion":null,
+                "parentQuestion":null
+            },
+            {
+                "name":"Mounted vehicle",
+                "nextQuestion":null,
+                "parentQuestion":null
+            }
+        ] 
+    },
+ 
+    {
+        "name":"Motor Trade",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Garbage and Maintainance workshop",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Car Dealers and Others",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            }
+        ] 
+    },
+    {
+        "name":"Motor Private",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Private Vehicles",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Motor Cycle including three wheeles",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            }
+        ] 
+    },
+    {
+        "name":"Comprehensive Class",
+        "controlType":"button",
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Private",
+                "nextQuestion":"Motor Private",
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Commercial",
+                "nextQuestion":"Motor Commercial",
+                "parentQuestion":null
+
+            },
+            {
+                "name":"Motor Trade",
+                "nextQuestion":"Motor Trade",
+                "parentQuestion":null
+
+            }
+        ] 
+    },
+    {
+        "name":"Type of coverage",
+        "controlType":"button",
+        "isFirst":true,
+        "insuranceType":"MOTOR_INSURANCE",
+        "children":[
+            {
+                "name":"Comprehensive",
+                "nextQuestion":"Comprehensive Class",
+                "parentQuestion":null
+
+            },
+            {
+                "name":"3rd Party",
+                "nextQuestion":null,
+                "parentQuestion":null
+
+            }
+        ] 
+    }
+]

@@ -1,0 +1,17 @@
+{
+    "definition": {
+      "openapi": "3.0.3",
+      "info": {
+        "version": "1.0.0",
+        "title": "Insurance App - User Module REST API",
+        "description": "A REST API built with Express and node js ",
+        "contact": {
+          "name": "", 
+          "email": ""
+        }
+      },
+      "host":"localhost:8800"  
+    },
+  
+    "apis": ["**/*.ts"]
+  }
