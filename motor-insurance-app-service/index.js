@@ -15,10 +15,10 @@ import userTypeRoute from "./routes/userType.js";
 import userRoute from "./routes/newUser.js";
 import newAuthRoute from "./routes/newAuth.js";
 import cookieparser from "cookie-parser";
-import swaggerJsDoc from "swagger-jsdoc";
+// import swaggerJsDoc from "swagger-jsdoc";
 import cors from "cors";
-import swaggerUi from "swagger-ui-express";
-import swaggerOptions from "./swagger.json" assert { type: "json" };
+// import swaggerUi from "swagger-ui-express";
+// import swaggerOptions from "./swagger.json" assert { type: "json" };
 import bodyParser from "body-parser";
 import SeedQuestion from "./questions.json" assert { type: "json" };
 import SeedInsuranceTypes from "./insuranceTypes.json" assert { type: "json" };
@@ -107,8 +107,8 @@ app.use("/api/userTypes", userTypeRoute);
 app.use("/api/newUsers", userRoute);
 app.use("/api/newAuth", newAuthRoute);
 
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+// const swaggerDocs = swaggerJsDoc(swaggerOptions);
+// app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use((error, req, res, next) => {
   const errorStatus = error.status || 500;
