@@ -3,35 +3,41 @@
         "name":"Own Goods",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+        "description":"Own goods description",
         "children":[
             {
                 "name":"Pick-Ups",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Pick-Ups description"
 
             },
             {
                 "name":"Trucks and Truck Trailers",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Trucks and Truck Trailers description"
 
             },
             {
                 "name":"Water Tanker",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Water Tanker description"
 
             },
             {
                 "name":"Fuel tanker and trailers",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Fuel tanker and trailers description"
 
             },
             {
                 "name":"Tipper",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Tipper description"
 
             }
         ] 
@@ -40,35 +46,41 @@
         "name":"General Cartage",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+        "description":"General Cartage description",
         "children":[
             {
                 "name":"Pick-Ups",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Pick-Ups description"
 
             },
             {
                 "name":"Trucks and Truck Trailers",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Trucks and Truck Trailers description"
 
             },
             {
                 "name":"Water Tanker",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Water Tanker description"
 
             },
             {
                 "name":"Fuel tanker and trailers",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Fuel tanker and trailers description"
 
             },
             {
                 "name":"Tipper",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Tipper description"
 
             }
         ] 
@@ -77,23 +89,27 @@
         "name":"Public Service(Fare Paying)",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+        "description":"Public Service(Fare Paying) description",
         "children":[
             {
                 "name":"Up-to-16 seats",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Up-to-16 seats description"
 
             },
             {
                 "name":"Between 17-30 seats",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Between 17-30 seats description"
 
             },
             {
                 "name":"Above 30 seats",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Above 30 seats description"
 
             }
         ] 
@@ -102,31 +118,37 @@
         "name":"Passenger Carrying",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+        "description":"Passenger Carryingdescription",
         "children":[
             {
                 "name":"Own Service",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Own Service description"
             },
             {
                 "name":"Public Service",
                 "nextQuestion":"Public Service(Fare Paying)",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Public Service description"
             },
             {
                 "name":"Taxi and Learner",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Taxi and Learner description"
             },
             {
                 "name":"Car Hire",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Car Hire description"
             },
             {
                 "name":"Motorcycles including three wheelers",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Motorcycles including three wheelers description"
             }
         ] 
     },
@@ -134,17 +156,20 @@
         "name":"Good Carrying",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+        "description":"Good Carrying description",
         "children":[
             {
                 "name":"Own Goods",
                 "nextQuestion":"Own Goods",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Own goods description"
 
             },
             {
                 "name":"General Cartage",
                 "nextQuestion":"General Cartage",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"General Cartage description"
 
             }
         ] 
@@ -153,31 +178,37 @@
         "name":"Motor Commercial",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+        "description":"Own goods description",
         "children":[
             {
                 "name":"Goods Carrying",
                 "nextQuestion":"Good Carrying",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Motor Commercial description"
             },
             {
                 "name":"Passenger Carrying",
                 "nextQuestion":"Passenger Carrying",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Passenger Carrying description"
             },
             {
                 "name":"Agricultural vehicle",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Agricultural vehicle description"
             },
             {
                 "name":"Ambulance",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Ambulance description"
             },
             {
                 "name":"Mounted vehicle",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Mounted vehicle description"
             }
         ] 
     },
@@ -186,17 +217,20 @@
         "name":"Motor Trade",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+        "description":"Motor Trade description",
         "children":[
             {
                 "name":"Garbage and Maintainance workshop",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Garbage and Maintainance workshop description"
 
             },
             {
                 "name":"Car Dealers and Others",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Car Dealers and Others description"
 
             }
         ] 
@@ -205,17 +239,20 @@
         "name":"Motor Private",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+                "description":"Motor Private description",
         "children":[
             {
                 "name":"Private Vehicles",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Private Vehicles description"
 
             },
             {
                 "name":"Motor Cycle including three wheeles",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Motor Cycle including three wheelesdescription"
 
             }
         ] 
@@ -224,23 +261,27 @@
         "name":"Comprehensive Class",
         "controlType":"button",
         "insuranceType":"MOTOR_INSURANCE",
+        "description":"Comprehensive Class description",
         "children":[
             {
                 "name":"Private",
                 "nextQuestion":"Motor Private",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Private description"
 
             },
             {
                 "name":"Commercial",
                 "nextQuestion":"Motor Commercial",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Commercialdescription"
 
             },
             {
                 "name":"Motor Trade",
                 "nextQuestion":"Motor Trade",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Motor Trade description"
 
             }
         ] 
@@ -250,17 +291,20 @@
         "controlType":"button",
         "isFirst":true,
         "insuranceType":"MOTOR_INSURANCE",
+                "description":"Type of coverage description",
         "children":[
             {
                 "name":"Comprehensive",
                 "nextQuestion":"Comprehensive Class",
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"Comprehensive description"
 
             },
             {
                 "name":"3rd Party",
                 "nextQuestion":null,
-                "parentQuestion":null
+                "parentQuestion":null,
+                "description":"3rd Party description"
 
             }
         ] 

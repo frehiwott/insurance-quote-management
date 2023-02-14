@@ -14,6 +14,7 @@ export const seedQuestionToDB = async (selectedQuestion) => {
     controlType: selectedQuestion?.controlType,
     isFirst: selectedQuestion?.isFirst,
     insuranceType: insuranceType?.id ? insuranceType?.id : null,
+    description: selectedQuestion?.description
   });
 
   try {

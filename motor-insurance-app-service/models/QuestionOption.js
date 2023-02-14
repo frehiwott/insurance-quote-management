@@ -7,7 +7,9 @@ const QuestionOptionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
+  description: {
+    type: String,
+  },
   parentQuestion: { type: Schema.Types.ObjectId, ref: "NewQuestion" },
   nextQuestion: { type: Schema.Types.ObjectId, ref: "NewQuestion" },
 });

@@ -10,6 +10,9 @@ const NewQuestionSchema = new mongoose.Schema({
   controlType: {
     type: String,
   },
+  description:{
+    type: String
+  },
   insuranceType: { type: Schema.Types.ObjectId, ref: "InsuranceType" },
   isFirst:{
     type: Boolean,

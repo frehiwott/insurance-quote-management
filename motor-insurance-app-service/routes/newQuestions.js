@@ -31,6 +31,8 @@ const router = express.Router();
  *               type: string
  *              controlType:
  *               type: string
+ *              description:
+ *               type: string
  *              btnNext:
  *               type: boolean
  *              insuranceType:

@@ -30,6 +30,8 @@ const router = express.Router();
  *               type: string
  *              parentQuestion:
  *               type: string
+ *              description:
+ *               type: string
  *              nextQuestion:
  *               type: string
  *

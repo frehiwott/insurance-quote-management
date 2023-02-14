@@ -46,7 +46,7 @@ export const getQuestions = async (req, res, next) => {
   try {
     let questions = await Question.find()
       .populate("insuranceType")
-      .select("name controlType insuranceType btnNext");
+      .select("name controlType insuranceType description btnNext");
 
     // iterate over questions and associate questions options
     let newQuestions = [];
@@ -61,6 +61,7 @@ export const getQuestions = async (req, res, next) => {
         controlType: questions[i]?.controlType,
         btnNext: questions[i]?.btnNext,
         insuranceType: questions[i]?.insuranceType,
+        description: questions[i]?.description,
         choices: questionOptions,
       });
     }
@@ -77,7 +78,7 @@ export const getTheFirstQuestion = async (req, res, next) => {
   try {
     let question = await Question.findOne({ isFirst: true })
       .populate("insuranceType")
-      .select("name controlType insuranceType btnNext");
+      .select("name controlType insuranceType description btnNext");
 
     // iterate over questions and associate questions options
     let newQuestions = {};
@@ -91,6 +92,7 @@ export const getTheFirstQuestion = async (req, res, next) => {
       controlType: question?.controlType,
       btnNext: question?.btnNext,
       insuranceType: question?.insuranceType,
+      description: question?.description,
       choices: questionOptions,
     };
 
@@ -105,9 +107,12 @@ export const getTheFirstQuestion = async (req, res, next) => {
 
 export const getTheFirstQuestionByInsuranceType = async (req, res, next) => {
   try {
-    let question = await Question.findOne({ isFirst: true, insuranceType: req.params.insuranceType })
+    let question = await Question.findOne({
+      isFirst: true,
+      insuranceType: req.params.insuranceType,
+    })
       .populate("insuranceType")
-      .select("name controlType insuranceType btnNext");
+      .select("name controlType insuranceType description btnNext");
 
     // iterate over questions and associate questions options
     let newQuestions = {};
@@ -121,6 +126,7 @@ export const getTheFirstQuestionByInsuranceType = async (req, res, next) => {
       controlType: question?.controlType,
       btnNext: question?.btnNext,
       insuranceType: question?.insuranceType,
+      description: question?.description,
       choices: questionOptions,
     };
 

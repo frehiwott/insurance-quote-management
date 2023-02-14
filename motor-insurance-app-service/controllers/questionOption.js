@@ -45,7 +45,7 @@ export const getQuestionOptions = async (req, res, next) => {
   try {
     const QuestionOptions = await QuestionOption.find()
       .populate("parentQuestion")
-      .select("name parentQuestion nextQuestion");
+      .select("name parentQuestion nextQuestion description");
 
     res.status(200).json(QuestionOptions);
   } catch (error) {
@@ -60,7 +60,7 @@ export const getQuestionOptionsByparentId = async (req, res, next) => {
       parentQuestion: req.params.id,
     })
       .populate("parentQuestion")
-      .select("name parentQuestion nextQuestion");
+      .select("name parentQuestion nextQuestion description");
 
     res.status(200).json(QuestionOptions);
   } catch (error) {
