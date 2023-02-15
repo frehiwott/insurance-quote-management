@@ -81,7 +81,22 @@ router.get("/first", getTheFirstQuestion);
  */
 router.get("/first/:insuranceType", getTheFirstQuestionByInsuranceType);
 
-//GET
+/**
+ * @swagger
+ * /api/newQuestions/{id}:
+ *   get:
+ *     description: fetch  question by id
+ *     tags:
+ *       - NewQuestion
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *          type: string
+ *     responses:
+ *       200:
+ *         description: Returns question
+ */
 router.get("/:id", getQuestion);
 
 //GET ALL
