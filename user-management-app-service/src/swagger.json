@@ -10,7 +10,7 @@
           "email": ""
         }
       },
-      "host":"localhost:8800"  
+      "host":"localhost:8000"  
     },
   
     "apis": ["**/*.ts"]
