@@ -36,7 +36,23 @@ export const deleteQuestion = async (req, res, next) => {
 export const getQuestion = async (req, res, next) => {
   try {
     const question = await Question.findById(req.params.id);
-    res.status(200).json(question);
+
+    // iterate over questions and associate questions options
+    let newQuestions = {};
+
+    let questionOptions = await QuestionOption.find({
+      parentQuestion: question?._id,
+    });
+    newQuestions = {
+      name: question?.name,
+      _id: question?._id,
+      controlType: question?.controlType,
+      btnNext: question?.btnNext,
+      insuranceType: question?.insuranceType,
+      description: question?.description,
+      choices: questionOptions,
+    };
+    res.status(200).json(newQuestions);
   } catch (error) {
     next(error);
   }
