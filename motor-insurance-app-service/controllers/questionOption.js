@@ -54,7 +54,6 @@ export const getQuestionOptions = async (req, res, next) => {
 };
 
 export const getQuestionOptionsByparentId = async (req, res, next) => {
-  console.log("request params id ", req.params.id)
   try {
     const QuestionOptions = await QuestionOption.find({
       parentQuestion: req.params.id,

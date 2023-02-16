@@ -6,6 +6,7 @@ import {
   getUserType,
   getUserTypes,
   updateUserType,
+  getUserTypeByName,
 } from "../controllers/user-type.controller";
 const router = express.Router();
 
@@ -26,6 +27,8 @@ const router = express.Router();
  *            properties:
  *              name:
  *               type: string
+ *              type:
+ *               type: string
  *              description:
  *               type: string
  *
@@ -40,6 +43,24 @@ router.put("/:id", updateUserType);
 
 //DELETE
 router.delete("/:id", deleteUserType);
+
+/**
+ * @swagger
+ * /api/userTypes/byType/{type}:
+ *   get:
+ *     description: fetch user types using type key
+ *     tags:
+ *       - UserType
+ *     parameters:
+ *       - in: path
+ *         name: type
+ *         schema:
+ *          type: string
+ *     responses:
+ *       200:
+ *         description: Returns question
+ */
+router.get("/byType/:type", getUserTypeByName);
 
 //GET
 router.get("/:id", getUserType);

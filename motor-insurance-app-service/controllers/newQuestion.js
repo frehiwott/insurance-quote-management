@@ -116,7 +116,6 @@ export const getTheFirstQuestion = async (req, res, next) => {
 
     res.status(200).json(newQuestions);
   } catch (error) {
-    console.log("error is ", error);
     next(error);
   }
 };
@@ -150,7 +149,6 @@ export const getTheFirstQuestionByInsuranceType = async (req, res, next) => {
 
     res.status(200).json(newQuestions);
   } catch (error) {
-    console.log("error is ", error);
     next(error);
   }
 };

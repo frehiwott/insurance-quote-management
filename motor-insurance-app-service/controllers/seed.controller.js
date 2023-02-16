@@ -44,7 +44,6 @@ export const seedQuestionToDB = async (selectedQuestion) => {
     });
     return true;
   } catch (error) {
-    console.log("error is is is", error);
   }
 };
 
@@ -61,6 +60,5 @@ export const seedInsuranceType = async (selectedInsuranceType) => {
 
     return true;
   } catch (error) {
-    console.log("error is is is", error);
   }
 };

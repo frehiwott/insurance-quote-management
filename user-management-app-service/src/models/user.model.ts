@@ -1,4 +1,3 @@
-import { Timestamp } from "bson";
 import mongoose from "mongoose";
 const Schema = mongoose;
 const NewUserSchema = new mongoose.Schema(
@@ -46,4 +45,4 @@ const NewUserSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-export default mongoose.model("NewUser", NewUserSchema);
+export default mongoose.model("User", NewUserSchema);

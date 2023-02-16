@@ -26,6 +26,8 @@ const router = express.Router();
  *            properties:
  *              name:
  *               type: string
+ *              type:
+ *               type: string
  *              description:
  *               type: string
  *

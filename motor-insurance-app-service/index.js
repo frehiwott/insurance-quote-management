@@ -9,6 +9,7 @@ import insuranceTypesRoute from "./routes/insuranceTypes.js";
 import insuranceCompanyRoute from "./routes/insuranceCompany.js";
 import insuranceCompanyRatingRoute from "./routes/insuranceCompanyRating.js";
 import userMotorDetailRoute from "./routes/userMotorDetail.js";
+import userInsuranceFeeRoute from "./routes/userInsuranceFee.js";
 
 //
 import cookieparser from "cookie-parser";
@@ -60,7 +61,6 @@ const seedInsuranceTypes = async () => {
     if (delOK) {
       for (let i = 0; i < SeedInsuranceTypes?.length; i++) {
         let created = await seedInsuranceType(SeedInsuranceTypes[i]);
-        console.log("insurance created  ", created);
       }
     }
   });
@@ -72,7 +72,6 @@ const connect = async () => {
       .connect(process.env.MONGO)
       .then((client) => {
         // console.log("e is ", e);
-        console.log("monodb connected");
 
         // seed the basic questions
         // seedInsuranceTypes().then((response) => {
@@ -99,6 +98,7 @@ app.use("/api/insuranceTypes", insuranceTypesRoute);
 app.use("/api/newQuestions", newQuestionsRoute);
 app.use("/api/questionOptions", questionOptionsRoute);
 app.use("/api/userMotorDetails", userMotorDetailRoute);
+app.use("/api/insuranceFee", userInsuranceFeeRoute);
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));

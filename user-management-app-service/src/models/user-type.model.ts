@@ -8,6 +8,9 @@ const UserTypeSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    type: {
+      type: String,
+    },
     description: {
       type: String,
     },

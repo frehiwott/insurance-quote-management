@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const UserMotorDetail = new mongoose.Schema(
+const UserMotorDetailSchema = new mongoose.Schema(
   {
     model: {
       type: String,
@@ -16,4 +16,4 @@ const UserMotorDetail = new mongoose.Schema(
   },
   { timestamps: true }
 );
-export default mongoose.model("UserMotorDetail", UserMotorDetail);
+export default mongoose.model("UserMotorDetail", UserMotorDetailSchema);
