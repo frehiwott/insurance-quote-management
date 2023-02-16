@@ -13,10 +13,10 @@ import userInsuranceFeeRoute from "./routes/userInsuranceFee.js";
 
 //
 import cookieparser from "cookie-parser";
-import swaggerJsDoc from "swagger-jsdoc";
+// import swaggerJsDoc from "swagger-jsdoc";
 import cors from "cors";
-import swaggerUi from "swagger-ui-express";
-import swaggerOptions from "./swagger.json" assert { type: "json" };
+// import swaggerUi from "swagger-ui-express";
+// import swaggerOptions from "./swagger.json" assert { type: "json" };
 import bodyParser from "body-parser";
 import SeedQuestion from "./questions.json" assert { type: "json" };
 import SeedInsuranceTypes from "./insuranceTypes.json" assert { type: "json" };
@@ -72,7 +72,6 @@ const connect = async () => {
       .connect(process.env.MONGO)
       .then((client) => {
         // console.log("e is ", e);
-
         // seed the basic questions
         // seedInsuranceTypes().then((response) => {
         //   seedInsuranceQuestions();
@@ -100,8 +99,8 @@ app.use("/api/questionOptions", questionOptionsRoute);
 app.use("/api/userMotorDetails", userMotorDetailRoute);
 app.use("/api/insuranceFee", userInsuranceFeeRoute);
 
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+// const swaggerDocs = swaggerJsDoc(swaggerOptions);
+// app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use((error, req, res, next) => {
   const errorStatus = error.status || 500;
