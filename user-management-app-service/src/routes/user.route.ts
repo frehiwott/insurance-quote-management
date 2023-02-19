@@ -30,6 +30,8 @@ const router = express.Router();
  *               type: string
  *              email:
  *               type: string
+ *              phoneNumber:
+ *               type: string
  *              password:
  *               type: string
  *              profile_picture:
