@@ -10,6 +10,7 @@ import insuranceCompanyRoute from "./routes/insuranceCompany.js";
 import insuranceCompanyRatingRoute from "./routes/insuranceCompanyRating.js";
 import userMotorDetailRoute from "./routes/userMotorDetail.js";
 import userInsuranceFeeRoute from "./routes/userInsuranceFee.js";
+import motorInsuranceDocumentRoute from "./routes/motorInsuranceDocument.js";
 
 //
 import cookieparser from "cookie-parser";
@@ -90,6 +91,9 @@ app.use(bodyParser.json());
 app.use(cookieparser());
 app.use(express.json());
 
+//  static file upload
+app.use("/uploads", express.static("uploads"));
+
 // newly added
 app.use("/api/insuranceCompany", insuranceCompanyRoute);
 app.use("/api/insuranceCompanyRating", insuranceCompanyRatingRoute);
@@ -98,6 +102,7 @@ app.use("/api/newQuestions", newQuestionsRoute);
 app.use("/api/questionOptions", questionOptionsRoute);
 app.use("/api/userMotorDetails", userMotorDetailRoute);
 app.use("/api/insuranceFee", userInsuranceFeeRoute);
+app.use("/api/motorInsuranceDocument", motorInsuranceDocumentRoute);
 
 // const swaggerDocs = swaggerJsDoc(swaggerOptions);
 // app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
