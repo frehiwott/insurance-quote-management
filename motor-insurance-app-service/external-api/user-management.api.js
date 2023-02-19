@@ -7,6 +7,14 @@ export const fetchUsers = async () => {
   return data;
 };
 
+// fetch user by id
+export const fetchUserById = async (userId) => {
+  const response = await fetch(process.env.USER_MODULE_SERVICE + "/users/"+ userId);
+  const data = await response.json();
+
+  return data;
+};
+
 // sign up user
 
 export const registerUser = async (user) => {

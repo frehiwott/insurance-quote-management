@@ -3,7 +3,9 @@ import express from "express";
 import {
   getUserInsuranceFee,
   createUserInsuranceFee,
+  createNewUserInsuranceFee,
 } from "../controllers/userInsuranceFee.js";
+import { verifyToken } from "../utils/verifyToken.js";
 const router = express.Router();
 
 /**
@@ -51,6 +53,37 @@ const router = express.Router();
  *         description: Created
  */
 router.post("/", createUserInsuranceFee);
+
+
+/**
+ * @swagger
+ * /api/insuranceFee/new:
+ *   post:
+ *     tags:
+ *       - InsuranceCompanyFee
+ *     requestBody:
+ *       description: A JSON object containing insurance fee information
+ *       content:
+ *         application/json:
+ *           schema:
+ *            type: object
+ *            properties:
+ *              model:
+ *               type: string
+ *              price:
+ *               type: number
+ *              dateOfManufacturing:
+ *               type: string
+ *              companyId:
+ *               type: string
+ *              questionId:
+ *               type: string
+ *
+ *     responses:
+ *       201:
+ *         description: Created
+ */
+router.post("/new",verifyToken, createNewUserInsuranceFee);
 
 /**
  * @swagger
