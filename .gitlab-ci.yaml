@@ -1,0 +1,25 @@
+variables:
+ IMAGE_NAME: researchmanagement/motor-insurance-app
+ IMAGE_TAG: nodejs-app
+stages:
+ - build-nodejs-app
+ - build-image
+build-nodejs-app:
+ image: node:16-alpine
+ stage: build-nodejs-app
+ script:
+  - npm install
+ artifacts:
+  paths:
+   - /home/gitlab-runner
+build-image:
+ image: docker:20.10.16
+ services:
+  - docker:20.10.16-dind
+ variables:
+  DOCKER_TLS_CERTDIR:"/certs"
+ before_script:
+  - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+ script:
+  - docker build -t $IMAGE_NAME:$IMAGE_TAG ./motor-insurance-app-service
+  - docker push $IMAGE_NAME:$IMAGE_TAG
