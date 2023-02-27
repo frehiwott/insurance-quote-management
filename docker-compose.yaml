@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+# service name
+ user-management:
+  container_name: user-management-container
+  image:  user-management-image
+  build:
+  # location of the docker file
+   context: ./user-management-app-service
+  # name of the docker file
+   dockerfile: Dockerfile
+  ports:
+  # external port: internal port
+   - 8000:8000
+  environment:
+   - PORT=8000
+  #  access token
+   - ACCESS_TOKEN_SECRET=accesstokensecret
+   - REFRESH_TOKEN_SECRET=refreshtokensecret
+   - MONGO:mongodb+srv://CiloDB:CiloDBPass@cluster0.mq6gjur.mongodb.net/insuranceDb?retryWrites=true&w=majority
+
+ motor-insurance:
+  container_name: motor-insurance-container
+  image: motor-insurance-image
+  build:
+  # location of the docker file
+   context: ./motor-insurance-app-service
+  # name of the docker file
+   dockerfile: Dockerfile
+  ports:
+  # external port: internal port
+   - 8800:8800
+  environment:
+   - PORT=8800
+  #  access token
+   - ACCESS_TOKEN_SECRET=accesstokensecret
+   - REFRESH_TOKEN_SECRET=refreshtokensecret
+   - MONGO:mongodb+srv://CiloDB:CiloDBPass@cluster0.mq6gjur.mongodb.net/insuranceDb?retryWrites=true&w=majority

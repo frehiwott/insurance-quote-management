@@ -1,16 +1,15 @@
 import InsuranceCompany from "../models/InsuranceCompany.js";
 import InsuranceCompanyRating from "../models/InsuranceCompanyRating.js";
-import UserInsuranceFee from "../models/userInsuranceFee.js";
+import UserInsuranceFee from "../models/UserInsuranceFee.js";
 import UserMotorDetail from "../models/UserMotorDetail.js";
-import { fetchUserById, registerUser } from "../external-api/user-management.api.js";
+import {
+  fetchUserById,
+  registerUser,
+} from "../external-api/user-management.api.js";
 import { decodeJWTToken } from "../utils/verifyToken.js";
 
 // create user insurance fee for new user
 export const createUserInsuranceFee = async (req, res, next) => {
-  console.log(
-    "under authentication token ",
-    decodeJWTToken(req.headers.authorization)
-  );
   // first create user info
   let body = req?.body;
 
@@ -68,11 +67,8 @@ export const createUserInsuranceFee = async (req, res, next) => {
 
 // create insurance fee for logged in user
 export const createNewUserInsuranceFee = async (req, res, next) => {
-  // console.log("under authentication token ");
-  console.log("under create new user insurance fee ....");
   // use info
   let userInfo = decodeJWTToken(req.headers.authorization)?.UserInfo;
-  console.log("under user info", userInfo)
 
   // first create user info
   let body = req?.body;
@@ -80,8 +76,6 @@ export const createNewUserInsuranceFee = async (req, res, next) => {
   try {
     // fethc user by id
     let user = await fetchUserById(userInfo?.id);
-
-    console.log("user is ", user, userInfo, userInfo?.id);
 
     // if user is not found ...
     if (!user) {
@@ -141,8 +135,9 @@ export const getUserInsuranceFee = async (req, res, next) => {
     // iterate over the insurance compnaies
     for (let i = 0; i < insuranceCompanies?.length; i++) {
       // fetch insurance company rating using question id and insurance company id
+      console.log("insurance company id...", insuranceCompanies[i]?._id);
       let insuranceRating = await InsuranceCompanyRating.findOne({
-        insuranceCompany: insuranceCompanies[i]?.id,
+        insuranceCompany: insuranceCompanies[i]?._id,
         question: questionId,
       });
 
@@ -153,6 +148,8 @@ export const getUserInsuranceFee = async (req, res, next) => {
       console.log(
         "insurance company ...",
         motorPrice,
+        insuranceRating,
+        insuranceCompany,
         insuranceRating?.rate * motorPrice
       );
       insuranceCompaniesFee.push({

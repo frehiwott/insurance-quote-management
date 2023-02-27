@@ -6,7 +6,7 @@ import {
   getUserMotorDetail,
   getUserMotorDetails,
   updateUserMotorDetail,
-} from "../controllers/UserMotorDetail.js";
+} from "../controllers/userMotorDetail.js";
 const router = express.Router();
 
 //CREATE
