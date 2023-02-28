@@ -3,18 +3,9 @@ variables:
  IMAGE_TAG: nodejs-app
 
 stages:
- - build-nodejs-app
  - build-image
  - deploy
 
-build-nodejs-app:
- image: node:16-alpine
- stage: build-nodejs-app
- script:
-  - npm install
- artifacts:
-  paths:
-   - /home/gitlab-runner
 
 build-image:
  stage: build-image
@@ -26,7 +17,7 @@ build-image:
  before_script:
   - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
  script:
-  - docker build -t $IMAGE_NAME:$IMAGE_TAG ./motor-insurance-app-service
+  - docker build -t $IMAGE_NAME:$IMAGE_TAG -f ./motor-insurance-app-service .
   - docker push $IMAGE_NAME:$IMAGE_TAG
 
 deploy:
