@@ -4,7 +4,7 @@ variables:
 
 stages:
  - build-image
- - deploy
+ - deploy-image
 
 
 build-image:
@@ -20,8 +20,8 @@ build-image:
   - docker build -t $IMAGE_NAME:$IMAGE_TAG -f ./motor-insurance-app-service .
   - docker push $IMAGE_NAME:$IMAGE_TAG
 
-deploy:
- stage: deploy
+deploy-image:
+ stage: deploy-image
  before_script:
   - chmod 400 $SSH_KEY
  script:
