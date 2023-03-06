@@ -1,18 +1,14 @@
 variables:
  IMAGE_NAME: researchmanagement/motor-insurance-app
  IMAGE_TAG: nodejs-app
+
 stages:
- - build-nodejs-app
  - build-image
-build-nodejs-app:
- image: node:16-alpine
- stage: build-nodejs-app
- script:
-  - npm install
- artifacts:
-  paths:
-   - /home/gitlab-runner
+ - deploy-image
+
+
 build-image:
+ stage: build-image
  image: docker:20.10.16
  services:
   - docker:20.10.16-dind
@@ -21,5 +17,15 @@ build-image:
  before_script:
   - docker login -u $REGISTRY_USER -p $REGISTRY_PASS
  script:
-  - docker build -t $IMAGE_NAME:$IMAGE_TAG ./motor-insurance-app-service
+  - docker build -t $IMAGE_NAME:$IMAGE_TAG -f ./motor-insurance-app-service .
   - docker push $IMAGE_NAME:$IMAGE_TAG
+
+deploy-image:
+ stage: deploy-image
+ before_script:
+  - chmod 400 $SSH_KEY
+ script:
+  - ssh -o StrictHostKeyChecking=no -i $SSH_KEY root@157.230.122.71 "
+      docker login -u $REGISTRY_USER -p $REGISTRY_PASS &&
+      docker ps -aq | xargs docker stop | xargs docker rm &&
+      docker run -d -p 8800:8800 $IMAGE_NAME:$IMAGE_TAG"
