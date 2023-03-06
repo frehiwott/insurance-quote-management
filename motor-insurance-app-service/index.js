@@ -7,6 +7,8 @@ import newQuestionsRoute from "./routes/newQuestions.js";
 import questionOptionsRoute from "./routes/questionOptions.js";
 import insuranceTypesRoute from "./routes/insuranceTypes.js";
 import insuranceCompanyRoute from "./routes/insuranceCompany.js";
+import insuranceBranchRoute from "./routes/insuranceBranch.js";
+import insuranceBranchEmployeesRoute from "./routes/InsuranceBranchEmployees.js";
 import insuranceCompanyRatingRoute from "./routes/insuranceCompanyRating.js";
 import userMotorDetailRoute from "./routes/userMotorDetail.js";
 import userInsuranceFeeRoute from "./routes/userInsuranceFee.js";
@@ -103,6 +105,8 @@ app.use("/api/questionOptions", questionOptionsRoute);
 app.use("/api/userMotorDetails", userMotorDetailRoute);
 app.use("/api/insuranceFee", userInsuranceFeeRoute);
 app.use("/api/motorInsuranceDocument", motorInsuranceDocumentRoute);
+app.use("/api/InsuranceBranches", insuranceBranchRoute);
+app.use("/api/insuranceBranchEmployees", insuranceBranchEmployeesRoute);
 
 // const swaggerDocs = swaggerJsDoc(swaggerOptions);
 // app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
@@ -118,6 +122,6 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.listen(8800, () => {
+app.listen(8800, "0.0.0.0", () => {
   connect();
 });
