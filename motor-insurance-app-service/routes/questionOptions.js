@@ -7,6 +7,7 @@ import {
   getQuestionOptions,
   updateQuestionOption,
   getQuestionOptionsByparentId,
+  getQuestionOptionsWithNoParent,
 } from "../controllers/questionOption.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router();
@@ -64,6 +65,19 @@ router.delete("/:id", deleteQuestionOption);
  *         description: Returns all the QuestionOptions by parent question
  */
 router.get("/byParent/:id", getQuestionOptionsByparentId);
+
+/**
+ * @swagger
+ * /api/questionOptions/withNoChildren:
+ *   get:
+ *     description: All QuestionOptions by parent question
+ *     tags:
+ *       - QuestionOption
+ *     responses:
+ *       200:
+ *         description: Returns all the QuestionOptions by parent question
+ */
+router.get("/withNoChildren", getQuestionOptionsWithNoParent);
 
 //GET
 router.get("/:id", getQuestionOption);

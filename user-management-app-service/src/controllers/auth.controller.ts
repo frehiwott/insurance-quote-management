@@ -17,14 +17,14 @@ export const handleLogin = async (req: Request, res: Response) => {
 
   // logInBy is using email
   if (logInBy == "Email") {
-    foundUser = await User.findOne({ email: username });
+    foundUser = await User.findOne({ email: username }).populate("role");
   }
   // if user wants to login using phoneNumber
   else if (logInBy == "PhoneNumber") {
-    foundUser = await User.findOne({ phoneNumber: username });
+    foundUser = await User.findOne({ phoneNumber: username }).populate("role");
   } else {
     // is user wants to login using username
-    foundUser = await User.findOne({ username: username });
+    foundUser = await User.findOne({ username: username }).populate("role");
   }
 
   if (!foundUser) return res.sendStatus(401);
@@ -33,7 +33,7 @@ export const handleLogin = async (req: Request, res: Response) => {
   const match = await bcrypt.compare(password, foundUser.password);
 
   if (match) {
-    const roles = Object.values(foundUser.roles);
+    const role = foundUser.role;
 
     // create JWTs
 
@@ -41,7 +41,7 @@ export const handleLogin = async (req: Request, res: Response) => {
       {
         UserInfo: {
           username: foundUser.username,
-          roles: roles,
+          role: role,
           id: foundUser?.id,
         },
       },
@@ -58,6 +58,8 @@ export const handleLogin = async (req: Request, res: Response) => {
     // saving refersh token with current user
     foundUser.refresh_token = refreshToken;
 
+    console.log("found user ", foundUser);
+
     // update the user with this refresh token
     const updatedUser = await User.findByIdAndUpdate(
       foundUser?.id,
@@ -73,7 +75,15 @@ export const handleLogin = async (req: Request, res: Response) => {
       secure: true,
       maxAge: 24 * 60 * 60 * 100,
     });
-    res.json({ accessToken });
+
+    res.json({
+      accessToken,
+      username: foundUser.username,
+      insuranceCompany: foundUser.insuranceCompany,
+      refreshToken,
+      role: role,
+      id: foundUser?.id,
+    });
   } else {
     res.sendStatus(401);
   }
@@ -81,15 +91,18 @@ export const handleLogin = async (req: Request, res: Response) => {
 
 // handle refresh token
 export const handleRefreshToken = async (req: Request, res: Response) => {
-  const cookies = req.cookies;
+  console.log("under handle refresh token .... ");
+  const token = req.body;
 
-  if (!cookies?.jwt) return res.sendStatus(401);
+  if (!token) return res.sendStatus(401);
 
-  const refreshToken = cookies.jwt;
+  const refreshToken = token?.refreshToken;
 
-  const foundUser: any = User.findOne({ refresh_token: refreshToken }).populate(
-    "roles"
-  );
+  const foundUser: any = await User.findOne({
+    refresh_token: refreshToken,
+  }).populate("role");
+
+  console.log("found user ", foundUser);
 
   if (!foundUser) return res.sendStatus(403); // forbidden
 
@@ -102,27 +115,27 @@ export const handleRefreshToken = async (req: Request, res: Response) => {
       if (err || foundUser.username !== decoded.username)
         return res.sendStatus(403);
 
-      const roles = Object.values(foundUser.roles);
+      const role = foundUser.role;
 
       const accessToken = jwt.sign(
         {
           UserInfo: {
             username: decoded.username,
-            roles: roles,
+            role: role,
           },
         },
         process.env.ACCESS_TOKEN_SECRET as string,
         { expiresIn: "30s" }
       );
 
-      const refreshToken = jwt.sign(
+      const newRefreshToken = jwt.sign(
         { username: decoded?.username },
         process.env.REFRESH_TOKEN_SECRET as string,
         { expiresIn: "1d" }
       );
 
       // saving refersh token with current user
-      foundUser.refresh_token = refreshToken;
+      foundUser.refresh_token = newRefreshToken;
 
       // update the user with this refresh token
       const updatedUser = await User.findByIdAndUpdate(
@@ -133,7 +146,16 @@ export const handleRefreshToken = async (req: Request, res: Response) => {
         { new: true }
       );
 
-      res.json({ accessToken });
+      console.log("updatedUser .. ", updatedUser);
+
+      res.json({
+        accessToken,
+        username: foundUser.username,
+        insuranceCompany: foundUser?.insuranceCompany,
+        newRefreshToken,
+        role: role,
+        id: foundUser?.id,
+      });
     }
   );
 };
@@ -184,9 +206,50 @@ export const verifyPhoneNumber = async (req: Request, res: Response) => {
   }
 };
 
+// verify phone number - get request
+export const verifyUserByPhoneNumber = async (req: Request, res: Response) => {
+  const { phoneNumber } = req.params;
+
+  // validate
+  if (!phoneNumber)
+    return res.status(400).json({ message: `Phonenumber is required` });
+
+  try {
+    let foundUser = await User.findOne({ phoneNumber: phoneNumber });
+
+    if (!foundUser) return res.sendStatus(409);
+
+    return foundUser;
+  } catch (err: any) {
+    res.status(409).json(err._message);
+  }
+};
+
 // verify email
 export const verifyEmail = async (req: Request, res: Response) => {
   const { email } = req.body;
+
+  console.log("under verify email ..");
+  // validate
+  if (!email) return res.status(400).json({ message: `Email is required` });
+
+  try {
+    let foundUser = await User.findOne({ email: email });
+
+    if (!foundUser) return res.sendStatus(409);
+
+    return foundUser;
+  } catch (err: any) {
+    res.status(409).json(err._message);
+  }
+};
+
+// get request - verify email
+export const verifyUserByEmail = async (req: Request, res: Response) => {
+  console.log("under verify user ");
+  const { email } = req.params;
+
+  console.log("verify user by email ", req.params, email);
 
   // validate
   if (!email) return res.status(400).json({ message: `Email is required` });

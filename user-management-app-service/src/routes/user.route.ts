@@ -1,3 +1,4 @@
+import { getUserByCompany, getUserByCreator } from "./../controllers/user.controller";
 import express from "express";
 
 import {
@@ -24,8 +25,6 @@ const router = express.Router();
  *           schema:
  *            type: object
  *            properties:
- *              user_type:
- *               type: string
  *              username:
  *               type: string
  *              email:
@@ -38,10 +37,10 @@ const router = express.Router();
  *               type: string
  *              created_by:
  *               type: string
- *              roles:
- *               type: array
- *               items:
- *                 type: string
+ *              role:
+ *               type: string
+ *              insuranceCompany:
+ *               type: string
  *              is_active:
  *               type: boolean
 
@@ -74,5 +73,42 @@ router.get("/:id", getUser);
  *         description: Returns all the Users
  */
 router.get("/", getUsers);
+
+/**
+ * @swagger
+ * /api/users/createdBy/{createdBy}:
+ *   get:
+ *     description: All user by the creator
+ *     tags:
+ *       - User
+ *     parameters:
+ *       - in: path
+ *         name: createdBy
+ *         schema:
+ *          type: string
+ *     responses:
+ *       200:
+ *         description: Returns all the users
+ */
+router.get("/createdBy/:createdBy", getUserByCreator);
+
+
+/**
+ * @swagger
+ * /api/users/byCompany/{id}:
+ *   get:
+ *     description: All user by the company
+ *     tags:
+ *       - User
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *          type: string
+ *     responses:
+ *       200:
+ *         description: Returns all the users
+ */
+router.get("/byCompany/:id", getUserByCompany);
 
 export default router;

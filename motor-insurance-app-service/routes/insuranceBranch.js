@@ -7,6 +7,7 @@ import {
   getInsuranceBranches,
   updateInsuranceBranch,
   getInsuranceBranchesByparentId,
+  getInsuranceBranchesByCompany,
 } from "../controllers/insuranceBranch.js";
 const router = express.Router();
 
@@ -63,6 +64,24 @@ router.delete("/:id", deleteInsuranceBranch);
  *         description: Returns all the InsuranceBranches by parent question
  */
 router.get("/byParent/:id", getInsuranceBranchesByparentId);
+
+/**
+ * @swagger
+ * /api/InsuranceBranches/byCompany/{id}:
+ *   get:
+ *     description: All InsuranceBranches by company 
+ *     tags:
+ *       - InsuranceBranch
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *          type: string
+ *     responses:
+ *       200:
+ *         description: Returns all the InsuranceBranches by company 
+ */
+router.get("/byCompany/:id", getInsuranceBranchesByCompany);
 
 //GET
 router.get("/:id", getInsuranceBranch);

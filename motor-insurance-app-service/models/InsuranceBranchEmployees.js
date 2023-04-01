@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const InsuranceBranchEmployeesSchema = new mongoose.Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
-  insuranceBranch: { type: Schema.Types.ObjectId, ref: "InsuranceBranch" },
+  insuranceBranch: { type: Schema.Types.ObjectId, ref: "insuranceBranch" },
   createdBy: { type: Schema.Types.ObjectId, ref: "User" },
 });
 

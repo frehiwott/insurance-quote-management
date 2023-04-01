@@ -67,4 +67,18 @@ export const getQuestionOptionsByparentId = async (req, res, next) => {
   }
 };
 
+export const getQuestionOptionsWithNoParent = async (req, res, next) => {
+  try {
+    const QuestionOptions = await QuestionOption.find({
+      nextQuestion: null,
+    })
+      .populate("parentQuestion")
+      .select("name parentQuestion nextQuestion description");
+
+    res.status(200).json(QuestionOptions);
+  } catch (error) {
+    next(error);
+  }
+};
+
 //export default createQuestionOption;

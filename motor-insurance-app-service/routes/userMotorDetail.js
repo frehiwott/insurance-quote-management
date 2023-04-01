@@ -30,6 +30,8 @@ const router = express.Router();
  *               type: string
  *              price:
  *               type: number
+ *              user_id:
+ *               type: string
  *
  *     responses:
  *       201:

@@ -9,7 +9,9 @@ export const fetchUsers = async () => {
 
 // fetch user by id
 export const fetchUserById = async (userId) => {
-  const response = await fetch(process.env.USER_MODULE_SERVICE + "/users/"+ userId);
+  const response = await fetch(
+    process.env.USER_MODULE_SERVICE + "/users/" + userId
+  );
   const data = await response.json();
 
   return data;
@@ -24,6 +26,27 @@ export const registerUser = async (user) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   });
+
+  if (response.status == 200) {
+    const data = await response.json();
+    return data;
+  } else {
+    const error = new Error("User not found");
+    error.code = response?.status;
+    throw error;
+  }
+};
+
+export const updateUser = async (user) => {
+  // response for user registration
+  const response = await fetch(
+    process.env.USER_MODULE_SERVICE + "/users/" + user?._id,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(user),
+    }
+  );
 
   if (response.status == 200) {
     const data = await response.json();
@@ -50,7 +73,9 @@ export const fetchRoleByName = async (type) => {
   const response = await fetch(
     process.env.USER_MODULE_SERVICE + "/roles/byName/" + type
   );
+
+  console.log("response is ")
   const role = await response.json();
 
-  return role?.id;
+  return role?._id;
 };

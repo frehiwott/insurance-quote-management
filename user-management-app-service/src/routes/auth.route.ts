@@ -2,6 +2,8 @@ import {
   resetPassword,
   verifyEmail,
   verifyPhoneNumber,
+  verifyUserByPhoneNumber,
+  verifyUserByEmail,
 } from "./../controllers/auth.controller";
 import express from "express";
 
@@ -105,6 +107,40 @@ router.post("/verifyPhoneNumber", verifyPhoneNumber);
  *         description: Created
  */
 router.post("/verifyEmail", verifyEmail);
+
+/**
+ * @swagger
+ * /api/auth/verifyEmail/{email}:
+ *   get:
+ *     tags:
+ *       - Auth
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *          type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
+router.get("/verifyEmail/:email", verifyUserByEmail);
+
+/**
+ * @swagger
+ * /api/auth/verifyPhoneNumber/{phoneNumber}:
+ *   get:
+ *     tags:
+ *       - Auth
+ *     parameters:
+ *       - in: path
+ *         name: phoneNumber
+ *         schema:
+ *          type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
+router.get("/verifyPhoneNumber/:phoneNumber", verifyUserByPhoneNumber);
 
 /**
  * @swagger

@@ -9,6 +9,7 @@ let storage = multer.diskStorage({
     callback(null, "uploads");
   },
   filename: (request, file, callback) => {
+    console.log("file is ", file);
     callback(null, getFilename(file));
   },
 });
@@ -25,7 +26,7 @@ let getFilename = (file) => {
 /**
  * Valid Image Mime Types
  */
-const MimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/*"];
+const MimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/*", "application/pdf"];
 
 /**
  * Upload Middleware
@@ -33,14 +34,16 @@ const MimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/*"];
 let upload = multer({
   storage: storage,
   fileFilter: (request, file, callback) => {
+    console.log("under multer ", file);
     if (MimeTypes.includes(file.mimetype)) {
       callback(null, true);
     } else {
-      callback(
-        new BadRequestError([
-          { field: "documents", message: "Message format needs to be in pdf" },
-        ])
-      );
+      callback(() => {
+        return {
+          field: "documents",
+          message: "Message format needs to be in pdf",
+        };
+      });
     }
   },
 });

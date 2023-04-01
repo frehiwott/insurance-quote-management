@@ -3,9 +3,6 @@ const Schema = mongoose;
 const NewUserSchema = new mongoose.Schema(
   {
     // user_code: { type: Schema.Types.ObjectId, ref: "UserType" },
-    user_type: {
-      type: Schema.Types.ObjectId, ref: "UserType" 
-    },
     username: {
       type: String,
       required: true,
@@ -28,7 +25,8 @@ const NewUserSchema = new mongoose.Schema(
     profile_picture: {
       type: String,
     },
-    roles: [{ type: Schema.Types.ObjectId, ref: "Role" }],
+    role: { type: Schema.Types.ObjectId, ref: "Role" },
+    insuranceCompany: { type: Schema.Types.ObjectId },
     is_active: {
       type: String,
     },
@@ -41,9 +39,7 @@ const NewUserSchema = new mongoose.Schema(
     refresh_token: {
       type: String,
     },
-    created_by: {
-      type: String,
-    },
+    created_by: { type: Schema.Types.ObjectId, ref: "User" },
     updated_by: {
       type: String,
     },

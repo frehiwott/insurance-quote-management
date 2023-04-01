@@ -53,6 +53,18 @@ export const getInsuranceBranches = async (req, res, next) => {
   }
 };
 
+export const getInsuranceBranchesByCompany = async (req, res, next) => {
+  try {
+    const InsuranceBranches = await InsuranceBranch.find({insuranceCompany: req.params.id})
+      .populate("insuranceCompany")
+      .select("name location insuranceCompany");
+
+    res.status(200).json(InsuranceBranches);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getInsuranceBranchesByparentId = async (req, res, next) => {
   try {
     const InsuranceBranches = await InsuranceBranch.find({

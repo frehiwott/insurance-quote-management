@@ -4,6 +4,7 @@ import {
   createRole,
   deleteRole,
   getRole,
+  getRoleByName,
   getRoles,
   updateRole,
 } from "../controllers/role.controller";
@@ -45,6 +46,25 @@ router.delete("/:id", deleteRole);
 
 //GET
 router.get("/:id", getRole);
+
+
+/**
+ * @swagger
+ * /api/roles/byName/{name}:
+ *   get:
+ *     description:  role by the name
+ *     tags:
+ *       - Role
+ *     parameters:
+ *       - in: path
+ *         name: name
+ *         schema:
+ *          type: string
+ *     responses:
+ *       200:
+ *         description: Returns role
+ */
+router.get("/byName/:name", getRoleByName);
 
 //GET ALL
 /**

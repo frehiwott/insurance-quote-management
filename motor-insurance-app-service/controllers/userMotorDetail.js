@@ -44,7 +44,6 @@ export const getUserMotorDetail = async (req, res, next) => {
 export const getUserMotorDetails = async (req, res, next) => {
   try {
     const UserMotorDetails = await UserMotorDetail.find()
-      .populate("user")
       .select("model price dateOfManufacturing user_id");
 
     res.status(200).json(UserMotorDetails);

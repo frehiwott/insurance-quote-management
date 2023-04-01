@@ -1,4 +1,4 @@
-import InsuranceType from '../models/InsuranceType.js';
+import InsuranceType from "../models/InsuranceType.js";
 
 export const createInsuranceType = async (req, res, next) => {
   const newInsuranceType = new InsuranceType(req.body);
@@ -9,6 +9,7 @@ export const createInsuranceType = async (req, res, next) => {
     next(error);
   }
 };
+
 export const updateInsuranceType = async (req, res, next) => {
   try {
     const updatedInsuranceType = await InsuranceType.findByIdAndUpdate(
@@ -26,7 +27,7 @@ export const updateInsuranceType = async (req, res, next) => {
 export const deleteInsuranceType = async (req, res, next) => {
   try {
     await InsuranceType.findByIdAndDelete(req.params.id);
-    res.status(200).json('InsuranceType has been deleted!');
+    res.status(200).json("InsuranceType has been deleted!");
   } catch (error) {
     next(error);
   }

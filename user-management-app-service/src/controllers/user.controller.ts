@@ -18,12 +18,6 @@ export const createUser = async (
       .status(400)
       .json({ message: "Username and password are required" });
 
-  // check if user type is not null
-  if (!userType) {
-    let userTypeObject = await UserType.findOne({ type: "USER" });
-    userType = userTypeObject?.id;
-  }
-
   // check if role is not null
   if (!role) {
     let roleObject = await Role.findOne({ type: "USER" });
@@ -36,7 +30,7 @@ export const createUser = async (
   if (duplicate) return res.sendStatus(409);
 
   // create new user
-  const newUser = new User({ ...req.body, user_type: userType, roles: [role] });
+  const newUser = new User({ ...req.body, user_type: userType, role: role });
 
   try {
     // generate hashed password
@@ -73,6 +67,7 @@ export const updateUser = async (
     next(error);
   }
 };
+
 export const deleteUser = async (
   req: Request,
   res: Response,
@@ -95,9 +90,35 @@ export const getUser = async (req: Request, res: Response, next: Function) => {
   }
 };
 
+export const getUserByCreator = async (
+  req: Request,
+  res: Response,
+  next: Function
+) => {
+  try {
+    const user = await User.find({ created_by: req.params?.createdBy });
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUserByCompany = async (
+  req: Request,
+  res: Response,
+  next: Function
+) => {
+  try {
+    const user = await User.find({ insuranceCompany: req.params?.id });
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getUsers = async (req: Request, res: Response, next: Function) => {
   try {
-    const users = await User.find();
+    const users = await User.find().populate("role").select("insuranceCompany username");
     res.status(200).json(users);
   } catch (error) {
     next(error);
