@@ -1,16 +1,16 @@
+
+import express from "express";
+
 import {
   resetPassword,
   verifyEmail,
   verifyPhoneNumber,
   verifyUserByPhoneNumber,
   verifyUserByEmail,
-} from "./../controllers/auth.controller";
-import express from "express";
-
-import {
   handleLogin,
   handleRefreshToken,
   handleLogout,
+  
 } from "../controllers/auth.controller";
 const router = express.Router();
 
@@ -124,6 +124,23 @@ router.post("/verifyEmail", verifyEmail);
  *         description: Created
  */
 router.get("/verifyEmail/:email", verifyUserByEmail);
+
+/**
+ * @swagger
+ * /api/auth/logout/{id}:
+ *   get:
+ *     tags:
+ *       - Auth
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *          type: string
+ *     responses:
+ *       201:
+ *         description: Created
+ */
+router.get("/logout/:id", handleLogout);
 
 /**
  * @swagger

@@ -61,7 +61,7 @@ export const getRoleByName = async (
 ) => {
   try {
     const role = await Role.find({ name: req.params.name });
-    res.status(200).json(role?.length ? role[0] : "");
+    res.status(200).json(role?.length ? role[0] : null);
   } catch (error) {
     next(error);
   }

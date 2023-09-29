@@ -3,14 +3,18 @@ import { Request, Response } from "express";
 import UserType from "../models/user-type.model";
 import Role from "../models/role.model";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const createUser = async (
-  req: Request,
+  req: any,
   res: Response,
   next: Function
 ) => {
+
   let userType = req.body?.user_type;
   let role = req?.body?.role;
+
+  console.log("under create user body body .... ", req.body);
 
   // validate username and password
   if (!req.body?.username || !req.body?.password)
@@ -21,7 +25,7 @@ export const createUser = async (
   // check if role is not null
   if (!role) {
     let roleObject = await Role.findOne({ type: "USER" });
-    role = roleObject?.id;
+    role = roleObject?._id;
   }
 
   // check for dublicate username in db
@@ -30,7 +34,9 @@ export const createUser = async (
   if (duplicate) return res.sendStatus(409);
 
   // create new user
-  const newUser = new User({ ...req.body, user_type: userType, role: role });
+  // const newUser = new User({ ...req.body, user_type: userType, role: role, profile_picture: req?.file?.path ? req?.file?.path : req?.body?.profile_picture });
+  const newUser = new User({ ...req.body, user_type: userType, role: role, profile_picture: null });
+
 
   try {
     // generate hashed password
@@ -40,10 +46,57 @@ export const createUser = async (
 
     const savedUser = await newUser.save();
 
-    // the resonse showuld be token ...
+    const accessToken = jwt.sign(
+      {
+        UserInfo: {
+          username: savedUser.username,
+          role: role,
+          id: savedUser?.id,
+        },
+      },
+      process.env.ACCESS_TOKEN_SECRET as string,
+      { expiresIn: "1d" }
+    );
 
-    res.status(200).json(savedUser);
+    const refreshToken = jwt.sign(
+      { username: savedUser?.username },
+      process.env.REFRESH_TOKEN_SECRET as string,
+      { expiresIn: "1d" }
+    );
+
+    // saving refersh token with current user
+    savedUser.refresh_token = refreshToken;
+
+    console.log("found user ", savedUser);
+
+    // update the user with this refresh token
+    await User.findByIdAndUpdate(
+      savedUser?.id,
+      {
+        $set: savedUser,
+      },
+      { new: true }
+    );
+
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      maxAge: 24 * 60 * 60 * 100,
+    });
+
+
+    // the resonse showuld be token ...
+    res.status(200).json({
+      accessToken,
+      username: savedUser.username,
+      refreshToken,
+      role: savedUser?.role,
+      id: savedUser?._id,
+      profilePicture: savedUser?.profile_picture
+    });
   } catch (error) {
+    console.log("error is inside my env ", error)
     next(error);
   }
 };

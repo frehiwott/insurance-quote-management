@@ -1,15 +1,15 @@
 import moment from "moment";
 import multer from "multer";
+import path from 'path';
 
-console.log("under multer is ... ")
 /**
  * Storage
  */
 let storage = multer.diskStorage({
-  destination: (request, file, callback) => {
+  destination: (request: any, file: any, callback: any) => {
     callback(null, "uploads");
   },
-  filename: (request, file, callback) => {
+  filename: (request: any, file: any, callback: any) => {
     let extArray = file.mimetype.split("/");
     let extension = extArray[extArray.length - 1]
     callback(null, getFilename(file) + "." + extension);
@@ -21,7 +21,7 @@ let storage = multer.diskStorage({
  *
  * @param {File} file
  */
-let getFilename = (file) => {
+let getFilename = (file: any) => {
   return `${moment().unix()}-${file.originalname}`;
 };
 
@@ -35,7 +35,7 @@ const MimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/*", "applicati
  */
 let upload = multer({
   storage: storage,
-  fileFilter: (request, file, callback) => {
+  fileFilter: (request: any, file: any, callback: any) => {
     console.log("under multer ", file);
     if (MimeTypes.includes(file.mimetype)) {
       callback(null, true);

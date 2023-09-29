@@ -83,6 +83,7 @@ export const handleLogin = async (req: Request, res: Response) => {
       refreshToken,
       role: role,
       id: foundUser?.id,
+      profilePicture: foundUser?.profile_picture
     });
   } else {
     res.sendStatus(401);
@@ -164,26 +165,28 @@ export const handleRefreshToken = async (req: Request, res: Response) => {
 export const handleLogout = async (req: Request, res: Response) => {
   // on the client , also delete the access token
 
-  const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(204); // no content
-
-  const refreshToken = cookies.jwt;
-
   // is refresh token in the db
 
-  const foundUser: any = User.findOne({ refresh_token: refreshToken });
+  const foundUser: any = User.findOne({ id:  req?.params?.id});
 
   if (!foundUser) {
-    res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true });
+    // res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true });
     return res.sendStatus(204);
   }
 
   // delete refresh token in db
   foundUser.refresh_token = "";
 
-  // update this on the db
+   // update the user with this refresh token
+   const updatedUser = await User.findByIdAndUpdate(
+    foundUser?.id,
+    {
+      $set: foundUser,
+    },
+    { new: true }
+  )
 
-  res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: true });
+  // update this on the db
   res.sendStatus(204);
 };
 

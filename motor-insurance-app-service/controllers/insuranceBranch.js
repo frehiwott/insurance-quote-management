@@ -1,6 +1,8 @@
 import InsuranceBranch from "../models/InsuranceBranch.js";
 
 export const createInsuranceBranch = async (req, res, next) => {
+
+  console.log("under insurance branch")
   const newInsuranceBranch = new InsuranceBranch(req.body);
   try {
     const savedInsuranceBranch = await newInsuranceBranch.save();

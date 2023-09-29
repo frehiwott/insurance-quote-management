@@ -36,6 +36,9 @@ app.use("/api/userTypes", userTypeRoute);
 app.use("/api/roles", roleRoute);
 app.use("/api/auth", authRoute);
 
+//  static file upload
+app.use("/uploads", express.static("uploads"));
+
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 

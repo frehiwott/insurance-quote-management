@@ -1,13 +1,16 @@
-import { getUserByCompany, getUserByCreator } from "./../controllers/user.controller";
 import express from "express";
 
 import {
   createUser,
   deleteUser,
   getUser,
+  getUserByCompany,
   getUsers,
   updateUser,
+  getUserByCreator
 } from "../controllers/user.controller";
+// import  upload  from '../middleware/uploadDocument';
+
 const router = express.Router();
 
 //CREATE
@@ -50,6 +53,7 @@ const router = express.Router();
  *         description: Created
  */
 router.post("/", createUser);
+// router.post("/", upload.single('profilePicture'), createUser);
 
 //UPDATE
 router.put("/:id", updateUser);
